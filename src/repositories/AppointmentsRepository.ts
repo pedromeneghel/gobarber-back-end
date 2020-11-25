@@ -5,9 +5,7 @@ import Appointment from '../models/Appointment';
 class AppointmentsRepository extends Repository<Appointment> {
   public async findByDate(date: Date): Promise<Appointment | null> {
     const findAppointment = await this.findOne({
-      where: {
-        date,
-      },
+      where: { date },
     });
 
     return findAppointment || null;
