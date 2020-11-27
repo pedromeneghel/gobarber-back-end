@@ -14,7 +14,7 @@ describe('CreateUser', () => {
     );
 
     const user = await createUser.execute({
-      name: 'Pedroca Peçoca',
+      name: 'John Doe',
       email: 'email@exemplo.com',
       password: '123456',
     });
@@ -33,7 +33,7 @@ describe('CreateUser', () => {
     );
 
     await createUser.execute({
-      name: 'Pedroca Peçoca',
+      name: 'John Doe',
       email: 'email@exemplo.com',
       password: '123456',
     });
