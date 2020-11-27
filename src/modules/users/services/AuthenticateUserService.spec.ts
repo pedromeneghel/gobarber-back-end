@@ -72,7 +72,7 @@ describe('AuthenticateIser', () => {
     });
 
     expect(user).toHaveProperty('id');
-    expect(
+    await expect(
       authenticateUser.execute({
         email: 'email@exemplo.com',
         password: '1234567',
