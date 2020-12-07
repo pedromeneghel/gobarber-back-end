@@ -2,8 +2,7 @@ import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import IUsersRepository from '../repositories/IUsersRepository';
-import IUserTokensRepository from '../repositories/IUsersTokensRepository';
-// import  User from '@modules/users/infra/typeorm/entities/User';
+import IUserTokensRepository from '../repositories/IUserTokensRepository';
 
 interface IRequest {
   email: string;
@@ -31,7 +30,10 @@ class SendForgotPasswordEmailService {
 
     await this.userTokensRepository.generated(user.id);
 
-    this.mailProvider.sendMail(email, 'Pedido de recuperação de senha enviado');
+    await this.mailProvider.sendMail(
+      email,
+      'Pedido de recuperação de senha enviado',
+    );
   }
 }
 
