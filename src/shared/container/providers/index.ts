@@ -1,10 +1,7 @@
 import { container } from 'tsyringe';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
-import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
-import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
-
+import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
+import HandlebarsMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider';
 import IStorageProvider from './StorageProvider/models/IStorageProvider';
 import DiskStorageProvider from './StorageProvider/implementations/DiskStorageProvider';
 
@@ -15,18 +12,12 @@ container.registerSingleton<IStorageProvider>(
   'StorageProvider',
   DiskStorageProvider,
 );
+container.registerSingleton<IMailTemplateProvider>(
+  'MailTemplateProvider',
+  HandlebarsMailTemplateProvider,
+);
 
 container.registerInstance<IMailProvider>(
   'MailProvider',
-  new EtherealMailProvider(),
-);
-
-container.registerSingleton<IUsersRepository>(
-  'UsersRepository',
-  UsersRepository,
-);
-
-container.registerSingleton<IUserTokensRepository>(
-  'UserTokensRepository',
-  UserTokensRepository,
+  container.resolve(EtherealMailProvider),
 );
