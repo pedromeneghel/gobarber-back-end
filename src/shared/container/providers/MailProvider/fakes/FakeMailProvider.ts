@@ -10,6 +10,9 @@ export default class FakeMailProvider implements IMailProvider {
   private messages: IMessage[] = [];
 
   public async sendMail(message: ISendMailDTO): Promise<void> {
-    this.messages.push(message);
+    this.messages.push({
+      to: message.to.email,
+      body: message.templateData.file,
+    });
   }
 }
