@@ -12,6 +12,7 @@ container.registerSingleton<IStorageProvider>(
   'StorageProvider',
   DiskStorageProvider,
 );
+
 container.registerSingleton<IMailTemplateProvider>(
   'MailTemplateProvider',
   HandlebarsMailTemplateProvider,
