@@ -1,7 +1,5 @@
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
-import FakeHashProvider from '@modules/users/providers/HashProvider/fakes/FakeHashProvier';
 import ListProvidersService from './ListProvidersService';
-// import AppError from '@shared/errors/AppError';
 
 let fakeUsersRepository: FakeUsersRepository;
 let listProvidersService: ListProvidersService;
@@ -10,9 +8,7 @@ describe('ListProviders', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
 
-    listProvidersService = new ListProvidersService(
-      fakeUsersRepository,
-    )
+    listProvidersService = new ListProvidersService(fakeUsersRepository);
   });
 
   it('should be able to list the providers', async () => {
@@ -20,7 +16,7 @@ describe('ListProviders', () => {
       name: 'John Doe',
       email: 'johndoe@exemple.com',
       password: '123456',
-    })
+    });
 
     const user2 = await fakeUsersRepository.create({
       name: 'John Trê',
