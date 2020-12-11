@@ -8,7 +8,9 @@ let listProviderMonthAvailabilityService: ListProviderMonthAvailabilityService;
 describe('ListProviderMonthAvailability', () => {
   beforeEach(() => {
     fakeAppointmentsRepository = new FakeAppointmentsRepository();
-    listProviderMonthAvailabilityService = new ListProviderMonthAvailabilityService();
+    listProviderMonthAvailabilityService = new ListProviderMonthAvailabilityService(
+      fakeAppointmentsRepository,
+    );
   });
 
   it('should be able to list the month avalability from provider', async () => {
@@ -19,7 +21,47 @@ describe('ListProviderMonthAvailability', () => {
 
     await fakeAppointmentsRepository.create({
       provider_id: 'user',
+      date: new Date(2020, 4, 20, 9, 0, 0),
+    });
+
+    await fakeAppointmentsRepository.create({
+      provider_id: 'user',
       date: new Date(2020, 4, 20, 10, 0, 0),
+    });
+
+    await fakeAppointmentsRepository.create({
+      provider_id: 'user',
+      date: new Date(2020, 4, 20, 11, 0, 0),
+    });
+
+    await fakeAppointmentsRepository.create({
+      provider_id: 'user',
+      date: new Date(2020, 4, 20, 12, 0, 0),
+    });
+
+    await fakeAppointmentsRepository.create({
+      provider_id: 'user',
+      date: new Date(2020, 4, 20, 13, 0, 0),
+    });
+
+    await fakeAppointmentsRepository.create({
+      provider_id: 'user',
+      date: new Date(2020, 4, 20, 14, 0, 0),
+    });
+
+    await fakeAppointmentsRepository.create({
+      provider_id: 'user',
+      date: new Date(2020, 4, 20, 15, 0, 0),
+    });
+
+    await fakeAppointmentsRepository.create({
+      provider_id: 'user',
+      date: new Date(2020, 4, 20, 16, 0, 0),
+    });
+
+    await fakeAppointmentsRepository.create({
+      provider_id: 'user',
+      date: new Date(2020, 4, 20, 17, 0, 0),
     });
 
     await fakeAppointmentsRepository.create({
@@ -30,15 +72,15 @@ describe('ListProviderMonthAvailability', () => {
     const avalability = await listProviderMonthAvailabilityService.execute({
       month: 5,
       year: 2020,
-      user_id: 'user',
+      provider_id: 'user',
     });
 
     expect(avalability).toEqual(
       expect.arrayContaining([
-        { day: 19, avaliable: true },
-        { day: 20, avaliable: false },
-        { day: 21, avaliable: false },
-        { day: 22, avaliable: true },
+        { day: 19, available: true },
+        { day: 20, available: false },
+        { day: 21, available: true },
+        { day: 22, available: true },
       ]),
     );
   });
