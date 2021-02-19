@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --ignore-watch node_modules --transpile-only src/shared/infra/http/server.ts",
+    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0 --ignore-watch node_modules --transpile-only src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "test": "jest"
   },

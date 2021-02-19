@@ -1,0 +1,8 @@
+version: 3
+
+services:
+    gobarbar-back-end:
+      ports:
+        - "9229:9229"
+      environment:
+        - DEBUG=1

@@ -1,7 +1,7 @@
 [
   {
     "type": "postgres",
-    "host": "localhost",
+    "host": "172.17.0.1",
     "port": 5432,
     "username": "postgres",
     "password": "123456",
@@ -19,7 +19,7 @@
   {
    "name": "mongo",
    "type": "mongodb",
-   "host": "localhost",
+   "host": "172.17.0.1",
    "port": 27017,
    "database": "gobarber",
    "useUnifiedTopology": true,
