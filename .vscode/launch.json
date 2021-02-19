@@ -8,7 +8,7 @@
       "type": "node",
       "request": "attach",
       "protocol": "inspector",
-      "address": "127.0.0.1",
+      "address": "172.17.0.1",
       "port": 9229,
       "restart": true,
       "name": "Debug",

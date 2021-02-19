@@ -7,5 +7,5 @@ RUN yarn
 
 COPY . .
 
-EXPOSE 3333, 9229
+EXPOSE 3333
 CMD ["yarn", "dev:server"]
