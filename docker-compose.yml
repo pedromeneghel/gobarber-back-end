@@ -1,12 +1,30 @@
-version: "3"
+version: "3.6"
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "100k"
+    max-file: "1"
+
+networks:
+  shared-services:
+    external: true
 
 services:
   gobarbar-back-end:
+    restart: always
     container_name: gobarbar-back-end
-    build: .
+    user: "${UID}:${GID}"
+    build:
+      context: .
+      target: dev
+    environment:
+      - WATCH_FILES=${WATCH_FILES}
     ports:
-      - "3333:3333"
-      - "9229:9229"
+      - "${HTTP_PORT}:${HTTP_PORT}"
     command: yarn dev:server
     volumes:
       - .:/usr/app
+    logging: *default-logging
+    networks:
+      - shared-services

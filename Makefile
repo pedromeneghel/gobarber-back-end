@@ -1,21 +1,24 @@
 .PHONY: build up watch down debug stop restart logs ps login
 
+config:
+	cp -n docker/example.env ./.env
+
 build:
 	docker-compose build
 
-up:
+up: config
 	docker-compose up -d
 
-watch:
+watch: config
 	WATCH_FILES=1 docker-compose up -d
 
-down:
+down: config
 	docker-compose down
 
-debug: down
+debug: down config
 	WATCH_FILES=1 docker-compose -f docker-compose.yml -f ./docker/debug.yml up -d
 
-start:
+start: config
 	docker-compose start
 
 stop:
@@ -29,5 +32,5 @@ logs:
 ps:
 	docker-compose ps
 
-login:
+login: config
 	docker-compose run -w /usr/app gobarbar-back-end /bin/bash

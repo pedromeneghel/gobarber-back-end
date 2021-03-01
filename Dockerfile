@@ -1,11 +1,8 @@
-FROM node:12.20.2-alpine3.11
+FROM node:12.20.2-alpine3.11 as dev
 
-WORKDIR /usr/app
-COPY package.json yarn.lock ./
+ENV PATH="/usr/app/node_modules/.bin:${PATH}"
+RUN echo "node ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/node && chmod 0440 /etc/sudoers.d/node
+CMD cd "/usr/app" && \
+  yarn && \
+  if [ "$WATCH_FILES" == "1" ]; then yarn dev:server; else node "dist/app.js"; fi
 
-RUN yarn
-
-COPY . .
-
-EXPOSE 3333
-CMD ["yarn", "dev:server"]

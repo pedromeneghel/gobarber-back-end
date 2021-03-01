@@ -8,12 +8,14 @@
       "type": "node",
       "request": "attach",
       "protocol": "inspector",
-      "address": "172.17.0.1",
+      "address": "localhost",
+      "name": "Debug in Docker",
       "port": 9229,
-      "restart": true,
-      "name": "Debug",
-      "skipFiles": ["<node_internals>/**"],
-      "outFiles": ["${workspaceFolder}/**/*.js"]
+      "remoteRoot": "/usr/app",
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/**/*.js",
+        "<node_internals>/**/*.js"
+      ]
     }
   ]
 }
